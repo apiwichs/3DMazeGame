@@ -1,6 +1,6 @@
 # FPGA Maze Game (Verilog)
 
-A hardware-based, tile-based maze exploration game inspired by *Wayout (1982)*, implemented entirely in **Verilog** on an **Intel/Altera DE1-SoC FPGA**. The project features real-time VGA graphics and fully synchronous movement and collision logic implemented directly at the hardware level.
+A hardware-based, tile-based maze exploration game inspired by *Wayout (1982)*, implemented entirely in **Verilog** on an **Altera DE1-SoC FPGA**. The project features real-time VGA graphics and fully synchronous movement and collision logic implemented directly at the hardware level.
 
 ---
 
