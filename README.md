@@ -15,7 +15,7 @@ To comply with university academic integrity policies:
 ## 🎮 Game Overview
 - **Resolution:** 640×480 (VGA)
 - **Refresh Rate:** 60 Hz (25 MHz pixel clock)
-- **Input:** On-board pushbuttons (KEY[4:1])
+- **Input:** On-board pushbuttons KEY[4:1]
 - **Output:** VGA Monitor
 - **Gameplay:** Tile-based movement with real-time wall collision detection
 
