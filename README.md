@@ -67,3 +67,9 @@ A finite state machine coordinates reset, idle, and movement states, ensuring de
 
 ## 📌 Engineering Focus
 This project demonstrates real-time digital design, FPGA graphics pipelines, synchronous control logic, and hardware-level debugging—skills directly applicable to embedded systems and FPGA-based development.
+
+### 🎥 Live Demo
+
+| VGA Monitor View |
+|-----------------|
+| [![VGA Monitor View](demo/projvideophoto.png)](https://github.com/user-attachments/assets/be4b0853-519a-4140-b1d3-de9dfa430ad4) |
