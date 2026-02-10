@@ -1,53 +1,125 @@
-\documentclass[11pt]{article}
+# 🧩 FPGA Maze Game (Verilog)
 
-\usepackage[margin=1in]{geometry}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{float}
-\usepackage{enumitem}
-\usepackage{titlesec}
+![Verilog](https://img.shields.io/badge/HDL-Verilog-purple)
+![FPGA](https://img.shields.io/badge/FPGA-DE1--SoC-blue)
+![Graphics](https://img.shields.io/badge/Graphics-VGA%20640x480-green)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
 
-% REMOVE TOP HEADER SPACE
-\setlength{\headheight}{0pt}
-\setlength{\headsep}{0pt}
+A **hardware-based, tile-based maze exploration game** inspired by *Wayout (1982)*, implemented entirely in **Verilog** on an **Altera DE1-SoC FPGA**.
 
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{2pt}
-\setlist[itemize]{topsep=2pt, itemsep=2pt}
-\titlespacing*{\section}{0pt}{6pt}{4pt}
+The project features real-time VGA graphics and fully synchronous movement and collision logic implemented directly at the hardware level, with no embedded CPU or software game loop.
 
-\begin{document}
-\vspace*{-\topskip}
+---
 
-{\large\textbf{Project Portfolio}}\\
-This document serves as an overview of selected engineering projects, highlighting system design, implementation details, and measurable performance results.
+## ⚠️ Academic Integrity Notice
 
-% -------------------------------
-\section*{CPU Pipeline Simulator}
-\textbf{Tech:} Python, NumPy, Pandas, Matplotlib\\
-\textbf{GitHub:} \url{https://github.com/yourusername/cpu-pipeline-simulator}
+To comply with university academic integrity policies:
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{cpu_pipeline_overview.png}
-\end{figure}
+- **Source code is not included**
+- **Only the compiled FPGA bitstream (`.sof`) is provided**
+- This allows the project to be demonstrated on hardware without exposing implementation details
 
-% -------------------------------
-\section*{Grocery Store Queue Simulation}
-\textbf{Tech:} C++ (C++17)\\
-\textbf{Concepts:} Discrete-event simulation, queues, priority scheduling\\
-\textbf{GitHub:} \url{https://github.com/yourusername/grocery-queue-simulation}
+Students currently enrolled in related courses should **not copy or submit** this work for academic credit.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{grocery_queue_overview.png}
-\end{figure}
+---
 
-\begin{itemize}
-  \item Time-driven discrete-event simulation using a global simulation clock
-  \item Supports single-queue and multi-queue checkout configurations
-  \item Priority-based event processing with efficient data structures
-  \item Computes max, average, and standard deviation of customer wait times
-\end{itemize}
+## 🎮 Game Overview
 
-\end{document}
+- **Resolution:** 640 × 480 (VGA)
+- **Refresh Rate:** 60 Hz (25 MHz pixel clock)
+- **Input:** On-board pushbuttons `KEY[4:1]`
+- **Output:** VGA Monitor
+- **Gameplay:** Tile-based movement with real-time wall collision detection
+
+The player moves exactly **one tile per input**, ensuring deterministic motion, stable rendering, and precise collision handling at the hardware level.
+
+---
+
+## 🛠 Hardware Requirements
+
+- **FPGA Board:** DE1-SoC (Cyclone V – 5CSEMA5F31C6)
+- **VGA Monitor:** 640 × 480 support
+- **On-board pushbuttons:** `KEY[4:1]`
+- **USB-Blaster**
+
+> The provided `.sof` file is **device-specific** and will not run on other FPGA boards without recompilation.
+
+---
+
+## 📥 Loading the Game
+
+1. Download the `.sof` file from the `output_files/` directory
+2. Connect the FPGA board via **USB-Blaster**
+3. Open **Quartus Prime Programmer**
+4. Select **Hardware Setup** → `USB-Blaster`
+5. Add `mazegame.sof` and check **Program/Configure**
+6. Click **Start**
+
+---
+
+## 🕹 Controls
+
+| Key    | Action        |
+|------|---------------|
+| KEY[4] | Move Left     |
+| KEY[3] | Move Right    |
+| KEY[2] | Move Forward  |
+| KEY[1] | Move Backward |
+| KEY[0] | Game Reset (Active Low) |
+
+---
+
+## 🚀 Architecture Highlights
+
+- 🖥 **Custom VGA Controller**  
+  Generates 640×480 timing signals and pixel output entirely in hardware
+
+- 🧱 **Maze ROM**  
+  Bit-mapped tile storage representing walls and paths
+
+- 🧭 **Tile-Based Movement Engine**  
+  One-step-per-input logic with collision detection before movement
+
+- 🔘 **Button Input Handling**  
+  Debounced and synchronously sampled on-board pushbuttons
+
+- 🎨 **Controlled Redraw Logic**  
+  Prevents residual pixels and visual artifacts during movement
+
+---
+
+## 🧠 Control Logic
+
+A **finite state machine (FSM)** coordinates reset, idle, and movement states.  
+This ensures deterministic timing, reliable input handling, and predictable behavior across all clock cycles.
+
+---
+
+## 📌 Engineering Focus
+
+This project demonstrates:
+
+- FPGA-based graphics pipelines
+- Synchronous digital design
+- Hardware collision detection
+- Finite state machine control
+- Real-time VGA timing and rendering
+- Debugging and validation directly on hardware
+
+These skills are directly applicable to **embedded systems**, **FPGA development**, and **hardware acceleration** roles.
+
+---
+
+## 🎥 Live Demo
+
+| VGA Monitor View |
+|-----------------|
+| [![VGA Monitor View](demo/projvideophoto.png)](https://github.com/user-attachments/assets/be4b0853-519a-4140-b1d3-de9dfa430ad4) |
+
+---
+
+## 👤 Author
+
+**Apiwich Sumeksri**  
+Electrical & Computer Engineering  
+University of Toronto
